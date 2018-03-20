@@ -1,6 +1,6 @@
-# posoul-hupu
+# hupuBBS
 
-> A Vue.js project
+> V2EX风格的虎扑BBS
 
 ## Build Setup
 

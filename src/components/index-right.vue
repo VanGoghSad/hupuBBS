@@ -14,9 +14,8 @@
 <script>
 import Cell from './cell.vue'
 import {mapState, mapActions, mapMutations} from 'vuex'
-import { setTimeout } from 'timers';
 export default {
-  name: 'body-right',
+  name: 'index-right',
   components: {
     'cell': Cell
   },
@@ -31,21 +30,18 @@ export default {
     },
     currentHotPage: state => {
       return state.currentHotPage
-    },
-    isRefreshing() {
-      return this.refreshing
     }
   }),
   created () {
     this.getDayilyHot({
-      pageIndex: 1,
+      pageIndex: 1
     })
   },
   methods: {
     ...mapActions(['getDayilyHot']),
     ...mapMutations(['SET_HOT', 'INCREASE_CURRENTHOTPAGE']),
-    //换一批
-    refreshHot() {
+    // 换一批
+    refreshHot () {
       this.INCREASE_CURRENTHOTPAGE()
       this.getDayilyHot({
         pageIndex: this.currentHotPage

@@ -1,30 +1,30 @@
 <template>
-  <div class="my_body">
+  <div class="my_index">
     <div class="sep20"/>
     <div class="all_content">
-      <my-body-main />
-      <my-body-right/>
+      <my-index-main />
+      <my-index-right/>
     </div>
     <div class="sep20"/>
   </div>
 </template>
 
 <script>
-import BodyMain from './body-main.vue'
-import BodyRight from './body-right.vue'
+import IndexMain from './index-main.vue'
+import IndexRight from './index-right.vue'
 
 export default {
   name: 'Body',
   components: {
-    'my-body-main': BodyMain,
-    'my-body-right': BodyRight
+    'my-index-main': IndexMain,
+    'my-index-right': IndexRight
   }
 }
 </script>
 
 <style lang="stylus">
   @import "../style/common"
-  .my_body
+  .my_index
     text-align center
     background-color #e2e2e2
     background-image url(../assets/img/shadow_light.png)

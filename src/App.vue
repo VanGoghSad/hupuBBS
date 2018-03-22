@@ -1,19 +1,20 @@
 <template>
   <div>
     <my-header/>
-    <my-body/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import Header from './components/header.vue'
-import Body from './components/body.vue'
+import MyIndex from './components/index.vue'
+import Post from './components/post.vue'
 
 export default {
   name: 'App',
   components: {
     'my-header': Header,
-    'my-body': Body
+    'my-index': MyIndex
   }
 }
 </script>

@@ -14,7 +14,7 @@ import Cell from './cell.vue'
 import {mapState, mapActions, mapMutations} from 'vuex'
 
 export default {
-  name: 'Body-main',
+  name: 'index-main',
   components: {
     'cell': Cell
   },
@@ -63,7 +63,7 @@ export default {
   @import "../style/common"
   #Main
     width auto
-    margin 0 10px 0 20px
+    margin 0 20px 0 20px
     flex-grow 1
     .top
       padding 10px

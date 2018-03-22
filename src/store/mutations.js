@@ -18,5 +18,8 @@ export default {
   },
   RESET_CURRENTHOTPAGE: (state) => {
     state.currentHotPage = 1
+  },
+  SET_CURRENTPOST: (state, currentPost) => {
+    state.currentPost = currentPost
   }
 }

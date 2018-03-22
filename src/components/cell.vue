@@ -3,7 +3,7 @@
     <img :src="identicon" class="avatar" :class="[detailed ? '' : 'little_img']">
     <div class="info_container">
       <span :class="[detailed ? 'item_title' : 'little_title']">
-        <a href="" >{{ post.title }}</a>
+        <router-link :to="{ name: 'post', params: { no: post.no, post: post } }" >{{ post.title }}</router-link>
       </span>
       <div v-if="detailed" class="sep5"/>
       <span v-if="detailed" class="info">
@@ -27,7 +27,7 @@ export default {
     }
   },
   computed: {
-    identicon() {
+    identicon () {
       let size = this.detailed ? 48 : 24
       let data = new Identicon(this.post.avatar, size).toString()
       return 'data:image/png;base64,' + data

@@ -62,4 +62,18 @@ router.get('/api/posts/:no', async (ctx, next) => {
   )
 })
 
+/**
+ * detail
+ */
+router.get('/api/detail/:no', async (ctx, next) => {
+  await db.Detail.findOne({'no': ctx.params.no}).exec().then(
+    (doc) => {
+      ctx.rest(doc)
+    },
+    () => {
+      throw new APIError('db:not_found', err)      
+    }
+  )
+})
+
 module.exports = router

@@ -22,8 +22,13 @@ export default {
       })
   },
   getPost({ commit }, no) {
-    return Vue.http.get('/api/post', {params: {no}}).then(response => {
+    return Vue.http.get('/api/posts/' + no).then(response => {
       commit('SET_CURRENTPOST', response.data)
+    })
+  },
+  getDetail({ commit }, no) {
+    return Vue.http.get('/api/detail/' + no).then(response => {
+      commit('SET_CURRENTDETAIL', response.data)
     })
   }
 }

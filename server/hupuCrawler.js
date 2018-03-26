@@ -1,6 +1,6 @@
 const cheerio = require("cheerio")
 const fs = require("fs")
-const request = require("request")
+const request = require("request").defaults({ encoding: null })
 const async = require("async")
 const superagent = require("superagent")
 const {hupuConfig} = require("./config")
@@ -133,8 +133,13 @@ class HupuCrawler {
         return this._log(`no.${no}回复爬取完成`)
       }
       let result = await this._fetchHtmlByNo(no, pageIndex)
-      const $ = cheerio.load(result)
+      const $ = cheerio.load(result, {decodeEntities: false})
       if (pageIndex === 1) {
+        let length = $('.quote-content').find('img').length
+        for (let i = 0; i < length; i++) {
+          let res = await this._imgToBase64($('.quote-content').find('img').get(i).attribs.src)
+          $($('.quote-content').find('img').get(i)).attr('src', res)
+        }
         detail.content = $('.quote-content').html()
       }
       $('.floor-show').each((index, item) => {
@@ -194,6 +199,18 @@ class HupuCrawler {
 
   }
 
+  _imgToBase64(src) {
+    return new Promise((resolve, reject) => {
+      request.get(src, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+          let data = `data:${response.headers["content-type"]};base64,${new Buffer(body).toString('base64')}`
+          resolve(data)
+        } else {
+          reject(error)
+        }  
+      })
+    })
+  }
 
 
   /**

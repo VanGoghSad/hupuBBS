@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     currentHotPage: 1,
     currentSort: 'pubg',
     currentPost: {},
+    currentDetail: {},
     tabs: [
       {label: 'PUBG', value: 'pubg', selected: true},
       {label: '步行街', value: 'bxj', selected: false}

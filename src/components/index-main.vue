@@ -40,6 +40,12 @@ export default {
   },
   mounted () {
   },
+  beforeRouteLeave(to, from, next) {
+    debugger
+  },
+  beforeRouteUpdate(to, from, next) {
+    debugger
+  },
   methods: {
     selectTab (selectedTab) {
       this.getPosts({

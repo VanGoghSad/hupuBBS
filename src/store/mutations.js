@@ -21,5 +21,8 @@ export default {
   },
   SET_CURRENTPOST: (state, currentPost) => {
     state.currentPost = currentPost
+  },
+  SET_CURRENTDETAIL: (state, currentDetail) => {
+    state.currentDetail = currentDetail
   }
 }

@@ -12,6 +12,7 @@
 <script>
 import PostMain from './post-main.vue'
 import PostRight from './post-right.vue'
+import store from '../store/index'
 
 export default {
   name: 'Post',
@@ -23,7 +24,12 @@ export default {
       post: Object
   },
   mounted() {
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    Promise.all([store.dispatch('getPost', to.params.no), store.dispatch('getDetail', to.params.no)]).then(() => {
+      next()
+    })
+  },
 }
 </script>
 

@@ -26,25 +26,26 @@ export default {
   },
   computed: mapState({
     hotPosts: state => {
-      return state.hot
+      let map = new Map(state.hot)
+      return map.get('all')
     },
     currentHotPage: state => {
       return state.currentHotPage
     }
   }),
   created () {
-    this.getDayilyHot({
+    this.getHotAll({
       pageIndex: 1
     })
   },
   methods: {
-    ...mapActions(['getDayilyHot']),
+    ...mapActions(['getHotAll']),
     ...mapMutations(['SET_HOT', 'INCREASE_CURRENTHOTPAGE']),
     // 换一批
     refreshHot () {
       this.INCREASE_CURRENTHOTPAGE()
-      this.getDayilyHot({
-        pageIndex: this.currentHotPage
+      this.getHotAll({
+        pageIndex: this.currentHotPage,
       })
     }
   }

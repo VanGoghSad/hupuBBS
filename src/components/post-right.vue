@@ -2,23 +2,51 @@
   <div id="Rightbar">
     <div class="box">
       <div class="cell action_container">
-        <span class="fade">步行街热帖</span>
+        <span class="fade">{{ post.sort + '热帖' }}</span>
         <i class="el-icon-refresh" @click="refreshHot()"></i>
       </div>
+      <cell v-for="post in hotPosts" :key="post.no" :post="post"/>
     </div>
-
   </div>
 </template>
 
 <script>
+import Cell from './cell.vue'
 import {mapState, mapActions, mapMutations} from 'vuex'
 export default {
   name: 'post-right',
-  components: {
+  components: { 
+    'cell': Cell
   },
+  props: {
+    post: Object
+  },
+  computed: mapState({
+    hotPosts: function(state) {
+      let map = new Map(state.hot)
+      return map.get(this.post.sort)
+    },
+    currentHotPage: state => {
+      return state.currentHotPage
+    }
+  }),
   created () {
+    this.getHot({
+      pageIndex: 1,
+      mySort: this.post.sort
+    })
   },
   methods: {
+    ...mapActions(['getHot']),
+    ...mapMutations(['SET_HOT', 'INCREASE_CURRENTHOTPAGE']),
+    // 换一批
+    refreshHot () {
+      this.INCREASE_CURRENTHOTPAGE()
+      this.getHot({
+        pageIndex: this.currentHotPage,
+        mySort: 'pubg'
+      })
+    }
   }
 }
 </script>

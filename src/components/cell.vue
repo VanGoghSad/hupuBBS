@@ -3,7 +3,7 @@
     <img :src="identicon" class="avatar" :class="[detailed ? '' : 'little_img']">
     <div class="info_container">
       <span :class="[detailed ? 'item_title' : 'little_title']">
-        <router-link :to="{ name: 'post', params: { no: post.no } }" >{{ post.title }}</router-link>
+        <router-link to="/post" >{{ post.title }}</router-link>
       </span>
       <div v-if="detailed" class="sep5"/>
       <span v-if="detailed" class="info">

@@ -2,14 +2,15 @@
   <div class="post_body">
     <div class="sep20"/>
     <div class="all_content">
-      <post-main :post="post" />
-      <post-right/>
+      <router-view/>
+      <post-right :post="post"/>
     </div>
     <div class="sep20"/>
   </div>
 </template>
 
 <script>
+import {mapState, mapActions, mapMutations} from 'vuex'
 import PostMain from './post-main.vue'
 import PostRight from './post-right.vue'
 import store from '../store/index'
@@ -20,8 +21,15 @@ export default {
     'post-main': PostMain,
     'post-right': PostRight
   },
-  props: {
-      post: Object
+  computed: {
+    ...mapState({
+      post: state => {
+        return state.currentPost
+      },
+      detail: state => {
+        return state.currentDetail
+      }
+    }),
   },
   mounted() {
   },

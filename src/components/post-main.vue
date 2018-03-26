@@ -14,20 +14,32 @@
         </small>
       </div>
       <div id="post_content"/>
-        <img src="" />      
+    </div>
+    <div class="sep20"/>
+    <div class="box">
+      <div class="cell">
+        <span class="gray">
+          {{ post.replyCount + ' 回复' }}
+          <strong class="snow">|</strong>
+          {{ '直到 ' + post.lastReplyTime }}
+        </span>
       </div>
+      <reply-cell v-for="reply in JSON.parse(detail.replies)" :reply="reply"/>
     </div>
   </div>
 </template>
 
 <script>
 import {mapState, mapActions, mapMutations} from 'vuex'
+import store from '../store/index'
 import Identicon from 'identicon.js'
 import Vue from 'vue'
+import ReplyCell from './replyCell'
 
 export default {
   name: 'post-main',
   components: {
+    'reply-cell': ReplyCell
   },
   data () {
     return {
@@ -66,13 +78,17 @@ export default {
   created () {
     // console.log(this.detail)
   },
+  beforeRouteEnter(to, from, next) {
+    Promise.all([store.dispatch('getPost', to.params.no), store.dispatch('getDetail', to.params.no)]).then(() => {
+      next()
+    })
+  },
   mounted () {
     new Vue({
       template: '<div class="cell">' + this.detail.content + '</div>'
     }).$mount('#post_content')
   },
   methods: {
-    ...mapActions(['getPost', 'getDetail'])
   }
 }
 </script>

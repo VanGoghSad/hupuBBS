@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MyIndex from '@/components/index'
 import Post from '@/components/post'
+import PostMain from '@/components/post-main'
 
 Vue.use(Router)
 
@@ -13,10 +14,15 @@ export default new Router({
       component: MyIndex,
     },
     {
-      path: '/post/:no',
-      name: 'post',
+      path: '/post',
       component: Post,
-      props: true
+      props: true,
+      children: [
+        {
+          path: '',
+          component: PostMain
+        }
+      ]
     }
   ]
 })

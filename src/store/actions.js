@@ -15,12 +15,20 @@ export default {
    * 查询每日热贴
    * @param {pageSize, pageIndex} 页号 数量
    */
-  getDayilyHot ({commit}, {pageSize = 10, pageIndex}) {
-    return Vue.http.get('api/hot', {params: {pageSize: pageSize, pageIndex: pageIndex}}).then(
+  getHot ({commit}, {pageSize = 10, pageIndex, mySort}) {
+    return Vue.http.get('/api/hot/' + mySort, {params: {pageSize: pageSize, pageIndex: pageIndex}}).then(
       response => {
-        commit('SET_HOT', response.data)
+        commit('SET_HOT', {hot: response.data, mySort: mySort})
       })
   },
+
+  getHotAll ({commit}, {pageSize = 10, pageIndex}) {
+    return Vue.http.get('/api/hot', {params: {pageSize: pageSize, pageIndex: pageIndex}}).then(
+      response => {
+        commit('SET_HOT', {hot: response.data, mySort: 'all'})
+      })
+  },
+
   getPost({ commit }, no) {
     return Vue.http.get('/api/posts/' + no).then(response => {
       commit('SET_CURRENTPOST', response.data)

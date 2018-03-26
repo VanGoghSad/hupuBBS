@@ -10,7 +10,7 @@ const restify = require('./utils/rest').restify
 // new ZhihuImgCrawler().init({question_number: '314250946'})
 
 const app = new koa()
-let hupuCrawler = new HupuCrawler([{topic: 'pubg', pageSize: 1}])
+let hupuCrawler = new HupuCrawler([{topic: 'pubg', pageSize: 1}, {topic: 'lol', pageSize: 1}])
 // let rule = new Schedule.RecurrenceRule()
 // //每20m同步一次数据
 // rule.minute = [0, 20, 40]

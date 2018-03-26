@@ -29,6 +29,25 @@ router.get('/api/posts', async (ctx, next) => {
 /**
  * 每日热贴
  */
+router.get('/api/hot/:mySort', async (ctx, next) => {
+  await db.Post.find(
+    {'sort': ctx.params.mySort},
+    null,
+    {
+      limit: ctx.query.pageSize,
+      sort: '-light',
+      skip: ctx.query.pageSize * (ctx.query.pageIndex - 1)
+    }
+  ).exec().then(
+    (doc) => {
+      ctx.rest(doc)
+    },
+    () => {
+      throw new APIError('db:not_found', err)      
+    }
+  )
+})
+
 router.get('/api/hot', async (ctx, next) => {
   await db.Post.find(
     null,

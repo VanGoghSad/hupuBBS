@@ -15,7 +15,8 @@ const store = new Vuex.Store({
     currentDetail: {},
     tabs: [
       {label: 'PUBG', value: 'pubg', selected: true},
-      {label: '步行街', value: 'bxj', selected: false}
+      {label: '步行街', value: 'bxj', selected: false},
+      {label: 'lol', value: 'lol', selected: false}
     ]
   },
   mutations,

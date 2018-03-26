@@ -153,7 +153,8 @@ class HupuCrawler {
             replyTime: $(item).children('.floor_box').children('.author').children('.left').children('.stime').text(),
             lights: $(item).children('.floor_box').children('.author').children('.left').children('.f444').children('.ilike_icon_list').children('.stime').text(),
             to: $(item).children('.floor_box').children('table').children('tbody').children('tr').children('td').children('blockquote').children('p').children('b').children('a').text(),
-            content: $(item).children('.floor_box').children('table').children('tbody').children('tr').children('td').html()  
+            content: $(item).children('.floor_box').children('table').children('tbody').children('tr').children('td').html(),
+            avatar: this._generateAvatarHash($(item).children('.user').children('.j_u').attr('uname'))
           }
           replies.push(reply)
         }

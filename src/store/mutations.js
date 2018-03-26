@@ -7,8 +7,13 @@ export default {
   SET_CURRENTSORT: (state, currentSort) => {
     state.currentSort = currentSort
   },
-  SET_HOT: (state, hot) => {
-    state.hot = hot
+  SET_HOT: (state, {hot, mySort}) => {
+    if (mySort === '') {
+      mySort = 'all'
+    }
+    let m = new Map(state.hot)
+    m.set(mySort, hot)
+    state.hot = [...m]
   },
   INCREASE_CURRENTHOTPAGE: (state) => {
     state.currentHotPage++

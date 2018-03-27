@@ -14,7 +14,7 @@ export default new Router({
       component: MyIndex,
     },
     {
-      path: '/post',
+      path: '/post/:no',
       component: Post,
       props: true,
       children: [

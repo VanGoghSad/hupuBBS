@@ -2,7 +2,7 @@
   <div class="post_body">
     <div class="sep20"/>
     <div class="all_content">
-      <router-view/>
+      <router-view :key="key"/>
       <post-right :post="post"/>
     </div>
     <div class="sep20"/>
@@ -30,6 +30,9 @@ export default {
         return state.currentDetail
       }
     }),
+    key() {
+      return this.$route.name !== undefined? this.$route.name + +new Date(): this.$route + +new Date()
+    }
   },
   mounted() {
   },

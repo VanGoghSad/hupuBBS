@@ -14,8 +14,11 @@ const store = new Vuex.Store({
     currentPost: {},
     currentDetail: {},
     tabs: [
-      {label: 'PUBG', value: 'pubg', selected: true},
       {label: '步行街', value: 'bxj', selected: false},
+      {label: '影视', value: 'ent', selected: false},
+      {label: 'IT数码', value: 'digital', selected: false},
+      {label: '车友交流', value: 'cars', selected: false},
+      {label: 'PUBG', value: 'pubg', selected: true},
       {label: 'lol', value: 'lol', selected: false}
     ]
   },

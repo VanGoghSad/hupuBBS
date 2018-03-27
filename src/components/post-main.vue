@@ -60,25 +60,9 @@ export default {
       detail: state => {
         return state.currentDetail
       }
-    }),
-    // imgArray() {
-    //   let result = []
-    //   let el = document.createElement('content')
-    //   el.innerHTML = this.detail.content
-    //   el.getElementsByTagName('img').forEach(img => {
-    //     Vue.http.get(img.src).then(res => {
-    //       result.push(res)
-    //     })
-    //   })
-    //   console.log(el.getElementsByTagName('img'))
-    //   debugger
-    //   return el.getElementsByTagName('img')
-    // }
+    })
   },
-  created () {
-    // console.log(this.detail)
-  },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     Promise.all([store.dispatch('getPost', to.params.no), store.dispatch('getDetail', to.params.no)]).then(() => {
       next()
     })
